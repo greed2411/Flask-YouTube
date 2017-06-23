@@ -4,7 +4,7 @@ Locally deployed Flask App  for downloading audio files, video files, playlists 
 
 ### Screenshots
 #### Homepage
-![Homepage](/../master/Flask-YouTube-homepage.png?raw=true "homepage")
+![Homepage](/../master/Screenshots/Flask-YouTube-homepage.png?raw=true "homepage")
 
 #### 404
-![Homepage](/../master/Flask-YouTube-404.png?raw=true "homepage")
+![Page not found](/../master/Screenshots/Flask-YouTube-404.png?raw=true "homepage")
