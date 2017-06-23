@@ -10,7 +10,6 @@
     width: 50%;
 }
 	</style>
-    <link rel="stylesheet" media="screen" href = "{{ url_for('static', filename='bootstrap.min.css') }}">
   </head>
   <body>
 	      <br><br><br>
@@ -21,12 +20,13 @@
 			<h3>Welp :/</h3>
 		</div>
 		
-		<img src = "{{ url_for('static', filename = 'queen_band_cartoon-wallpaper-960x540.jpg') }}">
+		<img src = "{{ url_for('static', filename = 'images/queen_band_cartoon-wallpaper-960x540.jpg') }}">
 		
 	</div>
 	
 	
   </body>
-  <script type = "text/javascript" src = "/static/bootstrap.min.js"></script>
+  <script type = "text/javascript" src = "{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
   <script type = "text/javascript" src = "/static/jquery-3.0.0.min.js"></script>
+  <link rel="stylesheet" media="screen" href = "{{ url_for('static', filename='css/bootstrap.min.css') }}">
 </html>
