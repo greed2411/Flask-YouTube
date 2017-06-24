@@ -14,7 +14,7 @@
 			background-size: cover;
 			background-repeat: no-repeat;
 			}
-		
+
 		</style>
   </head>
   <body>
@@ -75,61 +75,77 @@
 		  <!-- Main component for a primary marketing message or call to action -->
 		  <br><br><br>
 		  <div class="jumbotron">
-			<h1>{{ name_of_company }} <span class="glyphicon glyphicon-music" aria-hidden="true"></span></h1><br>
-			<p>For downloading audio <span class="glyphicon glyphicon-headphones" aria-hidden="true"></span> , video files  <span class="glyphicon glyphicon-film" aria-hidden="true"></span> , playlists of both video and audio <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;, from a valid {{ download_location }} at the best quality out there.</p>
-			<br>
+				<h1>{{ name_of_company }} <span class="glyphicon glyphicon-music" aria-hidden="true"></span></h1><br>
+				<p>For downloading audio <span class="glyphicon glyphicon-headphones" aria-hidden="true"></span> , video files  <span class="glyphicon glyphicon-film" aria-hidden="true"></span> , playlists of both video and audio <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;, from a valid {{ download_location }} at the best quality out there.</p>
+				<br>
 			
-			<div class="row">
-			
-				<div class="col-lg-2"></div>
-				
-				<div class="col-lg-8">
-				
-					<div class="input-group">
-						<span class="input-group-btn">
-							<button class="btn btn-default" type="button" rel="tooltip" data-toggle="tooltip" data-placement="left" title="Paste" ><span class="glyphicon glyphicon-paste" aria-hidden="true"></span></button>
-						</span>
-						<input type="text" class="form-control" placeholder="{{ download_location }}">
-						<span class="input-group-btn">
-							<button class="btn btn-default" type="button" data-toggle="modal" data-target=".bs-example-modal-sm">Go!</button>
-						</span>
-					</div><!-- /input-group -->
-					
-				</div><!-- /.col-lg-8 -->
-				
-					<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-					  <div class="modal-dialog modal-sm" role="document">
-						<div class="modal-content">
-						  <div class="modal-header">
-							<h4 class="modal-title" id="myModalLabel">What do you want?</h4>
-						  </div>
-						  <div class="modal-body" align = "center">
-								<div class="btn-group-vertical" data-toggle="buttons" >
-								<label class="btn btn-default">
-								<input type="radio" name="options" id="option1" autocomplete="off"> Audio
-								</label>
-								<label class="btn btn-default">
-								<input type="radio" name="options" id="option2" autocomplete="off"> Video
-								</label>
-								<label class="btn btn-default">
-								<input type="radio" name="options" id="option3" autocomplete="off"> Audio Playlist
-								</label>
-								<label class="btn btn-default">
-								<input type="radio" name="options" id="option3" autocomplete="off"> Video Playlist
-								</label>
-								</div>
-							</div>
-								<div class="modal-footer" align = "center">
-								<button type="button" class="btn btn-default btn-success btn-large" data-dismiss="modal">&nbsp;&nbsp;Download Now&nbsp;&nbsp;</button>
-								</div>
-						</div>
-					  </div>
-					</div>
-				<div class="col-lg-2"></div>
-			</div><!-- row -->
-		   
-		  </div><!-- jumbotron -->
+				<div class="row">
+						<div class="col-lg-2"></div>
 
+						<div class="form-group col-lg-8">
+
+							<form action="" method="post">
+								<div class="input-group">
+									<div class="input-group-btn">
+										<button class="btn btn-default" type="button" rel="tooltip" data-toggle="tooltip" data-placement="left" title="Paste" ><span class="glyphicon glyphicon-paste" aria-hidden="true"></span></button></span>
+									</div>
+									<input type="text" class="form-control" placeholder="{{ download_location }}" name="url"  value="{{request.form.url}}">
+									<div class="input-group-btn">
+										<button class="btn btn-default" type="button" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="glyphicon glyphicon-save"></i></button>
+									</div>
+												<!-- Submission modal -->
+											<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+												<div class="modal-dialog modal-sm" role="document">
+													<div class="modal-content">
+														<div class="modal-header">
+															<h4 class="modal-title" id="myModalLabel">What do you want?</h4>
+														</div>
+														<div class="modal-body" align = "center">
+															<div class="btn-group-vertical" data-toggle="buttons" >
+																<label class="btn btn-default">
+																	<input type="radio" name="options" id="option1" autocomplete="off"> Audio
+																</label>
+																<label class="btn btn-default">
+																	<input type="radio" name="options" id="option2" autocomplete="off"> Video
+																</label>
+																<label class="btn btn-default">
+																	<input type="radio" name="options" id="option3" autocomplete="off"> Audio Playlist
+																</label>
+																<label class="btn btn-default">
+																	<input type="radio" name="options" id="option3" autocomplete="off"> Video Playlist
+																</label>
+															</div>
+														</div>
+														<div class="modal-footer" align = "center">
+															<button type="submit" class="btn btn-default btn-success btn-large">&nbsp;&nbsp;Download Now&nbsp;&nbsp;</button>
+														</div>
+													</div>
+												</div>
+											</div>
+								</div>
+							</form>
+						</div>
+					
+
+				
+							
+					<div class="col-lg-2"></div>
+				</div><!-- row -->
+		   
+			</div><!-- jumbotron -->
+			<div class="container">
+			{% with messages = get_flashed_messages() %}
+			  {% if messages %}
+				{% for message in messages %}
+				  <div class="alert alert-warning alert-dismissible" role="alert">
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+					{{message}}
+				  </div>
+				{% endfor %}
+			  {% endif %}
+			{% endwith %}
+
+			</div>
 		</div> <!-- /container -->
 		
 		<script type = "text/javascript" src = "{{ url_for('static', filename='jquery-3.0.0.min.js') }}"></script>
