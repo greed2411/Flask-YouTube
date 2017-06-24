@@ -103,16 +103,16 @@
 														<div class="modal-body" align = "center">
 															<div class="btn-group-vertical" data-toggle="buttons" >
 																<label class="btn btn-default">
-																	<input type="radio" name="options" id="option1" autocomplete="off"> Audio
+																	<input type="radio" name="submit" value ="1" id="option1" autocomplete="off"> Audio
 																</label>
 																<label class="btn btn-default">
-																	<input type="radio" name="options" id="option2" autocomplete="off"> Video
+																	<input type="radio" name="submit" value = "2" id="option2" autocomplete="off"> Video
 																</label>
 																<label class="btn btn-default">
-																	<input type="radio" name="options" id="option3" autocomplete="off"> Audio Playlist
+																	<input type="radio" name="submit" value = "3" id="option3" autocomplete="off"> Audio Playlist
 																</label>
 																<label class="btn btn-default">
-																	<input type="radio" name="options" id="option3" autocomplete="off"> Video Playlist
+																	<input type="radio" name="submit" value = "4" id="option4" autocomplete="off"> Video Playlist
 																</label>
 															</div>
 														</div>
@@ -133,21 +133,9 @@
 				</div><!-- row -->
 		   
 			</div><!-- jumbotron -->
-			<div class="container">
-			{% with messages = get_flashed_messages() %}
-			  {% if messages %}
-				{% for message in messages %}
-				  <div class="alert alert-warning alert-dismissible" role="alert">
-				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-					{{message}}
-				  </div>
-				{% endfor %}
-			  {% endif %}
-			{% endwith %}
 
-			</div>
 		</div> <!-- /container -->
-		
+
 		<script type = "text/javascript" src = "{{ url_for('static', filename='jquery-3.0.0.min.js') }}"></script>
 		<script type = "text/javascript" src = "{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 		<script type="text/javascript">
