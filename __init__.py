@@ -26,7 +26,7 @@ def home_page():
 
 @app.errorhandler(404)
 def page_not_found(error):
-    return render_template('page_not_found.html' , "404 bud"), 404
+    return render_template('page_not_found.html' , title = "404 bud"), 404
 	
 @app.errorhandler(400) 
 def page_not_found(error): 
