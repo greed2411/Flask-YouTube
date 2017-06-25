@@ -2,25 +2,27 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>{{title}}</title>
+    <title>{{Invalid URL}}</title>
 	<style>
+	
 	img {
     display: block;
     margin: auto;
-    width: 50%;
+	width = 50%;
+	height = auto;
 }
 	</style>
   </head>
   <body>
-	      <br><br><br>
+	      <br>
 
 	<div class="container">
 		<div class="jumbotron">
-			<h1>Page not found or doesn't exist.</h1> 
+			<h1>Invalid URL</h1> 
 			<h3>Welp :/</h3>
 		</div>
 		
-		<img src = "{{ url_for('static', filename = 'images/queen_band_cartoon-wallpaper-960x540.jpg') }}">
+		<img src = "{{ url_for('static', filename = 'images/house-simpson.jpg') }}">
 		
 	</div>
 	
