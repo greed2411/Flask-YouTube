@@ -86,9 +86,11 @@
 							<form action="" method="post">
 								<div class="input-group">
 									<div class="input-group-btn">
-										<button class="btn btn-default" type="button" rel="tooltip" data-toggle="tooltip" data-placement="left" title="Paste" ><span class="glyphicon glyphicon-paste" aria-hidden="true"></span></button></span>
+										<button class="btn btn-default" type="button" rel="tooltip" data-toggle="tooltip" data-placement="left" title="Paste"><span class="glyphicon glyphicon-paste" aria-hidden="true"></span></button>
 									</div>
-									<input type="text" class="form-control" placeholder="{{ download_location }}" name="url"  value="{{request.form.url}}">
+									<div id='editableDiv' contenteditable='true'>
+										<input type="text" class="form-control" placeholder="{{ download_location }}" name="url"  value="{{request.form.url}}" id = "Paste">
+									</div>
 									<div class="input-group-btn">
 										<button class="btn btn-default" type="button" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="glyphicon glyphicon-save"></i></button>
 									</div>
@@ -141,7 +143,10 @@
 		$(function () {
 		$("[rel='tooltip']").tooltip();
 		});
-
+$('button[title="Paste"]').on('click', function(e) {
+  $('input[name="url"]').focus();
+  document.execCommand('paste');
+});
 		</script>
   </body>
 	
