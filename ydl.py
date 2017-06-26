@@ -12,13 +12,18 @@ import subprocess
 	
 """
 def verify(url):
-
+	"""
+	To check whether `url` belongs to YouTube, if yes returns True
+	else False
+	"""
 	if 'www.youtube.com' in url or 'youtu.be' in url :
 		return True
 	return False
 
 def get_media(url, choice):
-	
+	"""
+	Uses `choice`, to download the required content from `url` 
+	"""
 	try:
 				
 		if choice == 1:
@@ -37,14 +42,20 @@ def get_media(url, choice):
 				
 			subprocess.call('youtube-dl -i -o "%/media/Video Playlists/(playlist)s/%(playlist_index)s.%(title)s.%(ext)s" --yes-playlist --newline --no-warnings "{url}"'.format(url=url), shell=True)		
 					
-	except Exception as e: #for any other unknown errors,  used it to get the other exceptions mentioned above
+	except Exception as e: #for any other unknown errors,  used it to get the other exceptions mentioned above, while debugging used to print `e`
 		
 		return e
 
-url = ""
-choice = 1
-verify(url)		
-get_media(url, choice)
+if __name__ == "___main__" :
+
+	print("This is a borrowed script")
+
+else :
+	
+	url = ""
+	choice = 1
+	verify(url)		
+	get_media(url, choice)
 	
 
 

@@ -5,6 +5,10 @@ app = Flask(__name__)
 
 @app.route('/', methods = ['GET', 'POST'])
 def home_page():
+	"""
+	Displaying homepage
+	"""
+
 	title = "YDL"
 	name_of_company = "YouTube Downloader"
 	download_location = "YouTube URL"
@@ -28,8 +32,8 @@ def home_page():
 				return redirect(url_for('home_page'))
 			
 			return render_template('error_template.html' , title = "Invalid URL", 
-															message = "Invalid URL",
-    													   subline = "Welp :|", 
+															message = "Are you being intentionally dense? Huh?",
+    													   subline = "Invalid URL", 
     													   image_location = url_for('static', filename = 'images/house-simpson.jpg'))
 
 
@@ -38,17 +42,25 @@ def home_page():
 
 @app.errorhandler(404)
 def page_not_found(error):
+    """
+	for anyone trying different links or searching for images within the server
+    """
     return render_template('error_template.html' , title = "404 bud", 
-    												message = "Page not found or doesn't exist",
-    												subline = "Welp :|", 
-    												image_location = url_for('static', filename = 'images/queen-band-simpson.jpg') ), 404
-	
+    												message = "Time to make the chimi-fuckin'-changas. ",
+    												subline = "404, not there", 
+    												image_location = url_for('static', filename = 'images/deadpool-funny.jpg') ), 404
+
+
 @app.errorhandler(400) 
 def bad_request(error): 
+	"""
+	For handling situations where the server doesn't know what to do with the browser's request
+	"""
 	return render_template('error_template.html' , title = "Aaaah ...", 
-													message = "We don't know what happened",
-    												subline = "Probably because you didn't give a choice of download and/or a valid URL", 
-    												image_location = url_for('static', filename = 'images/gangam-style-simpson.jpg')), 400
+													message = "나는 이해하지 못한다.",
+    												subline = "Yeah, the server couldn't understand what you asked for, probably because you didn't give a choice of download.", 
+    												image_location = url_for('static', filename = 'images/simpson-gangam.jpg')), 400
+
 
 if __name__ == '__main__':
 	
