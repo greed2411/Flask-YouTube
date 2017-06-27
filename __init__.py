@@ -1,7 +1,18 @@
-from flask import Flask, render_template, request, redirect, flash, url_for
+from flask import Flask, render_template, request, redirect, flash, url_for, send_file
 from ydl import get_media, verify
 
 app = Flask(__name__)
+
+@app.route('/return-file/')
+def return_file():
+	return send_file('static\images\house-simpson.jpg', attachment_filename = 'house-md-simpson.jpg')
+
+@app.route('/file-downloads/')
+def file_downloads():
+	return render_template('downloads.html', title="Yay", message = "See you around!",    													  
+    													   image_location = url_for('static', filename = 'images/ironman-simpson.jpg'))
+	
+
 
 @app.route('/', methods = ['GET', 'POST'])
 def home_page():
