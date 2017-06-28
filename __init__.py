@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, flash, url_for, send_file, session
 from ydl import get_media, verify, fetch_name
+from zipper import zipping
 
 app = Flask(__name__)
 app.secret_key = 'supposed to be a secret'
@@ -7,9 +8,22 @@ app.secret_key = 'supposed to be a secret'
 @app.route('/return-file/')
 def return_file():
 	
-	filename = session.get('filename') + '.mp3'
-	location = 'media\Audio downloads\{}.mp3'.format(session.get('id'))
-	return send_file(location, attachment_filename = filename, as_attachment = True)
+	num_choice = session.get('choice')
+	filename = session.get('filename')
+
+	if num_choice == 1 :
+		filename_formatted = filename + '.mp3'
+		location = 'media\Audio downloads\{}.mp3'.format(session.get('id'))
+	
+	if num_choice == 2 :
+		filename_formatted = filename + '.mp4'
+		location = 'media\Video downloads\{}.mp4'.format(session.get('id'))
+	
+	if num_choice == 3 or num_choice == 4 :
+		filename_formatted = filename + '.zip'
+		location = 'media\{}.zip'.format(session.get('id'))
+	
+	return send_file(location, attachment_filename = filename_formatted, as_attachment = True)
 
 @app.route('/file-downloads/')
 def file_downloads():
@@ -17,6 +31,13 @@ def file_downloads():
 	url = session.get('url')
 	filename = fetch_name(url)
 	session['filename'] = filename
+	num_choice = session.get('choice')
+	location = 'media\{}'.format(session.get('id'))
+	id_generated = session.get('id')
+
+	if num_choice == 3 or num_choice ==4:
+		zipping(id_generated, location)
+
 	flash('Successfully downloaded {}'.format(filename))
 	return render_template('downloads.html', title="Yay", message = "Sir, it appears the file is ready for download.", 
 											image_location = url_for('static', filename = 'images/ironman-simpson.jpg'))
@@ -51,7 +72,8 @@ def home_page():
 				result_id = get_media(attempted_url, num_choice)
 				session['url'] = attempted_url
 				session['id'] = result_id
-				
+				session['choice'] = num_choice
+				#return render_template('index.html', title = result_id)
 				return redirect(url_for('file_downloads'))
 			
 			return render_template('error_template.html' , title = "Invalid URL", 

@@ -49,11 +49,13 @@ def get_media(url, choice):
 
 		elif choice == 3:
 				
-			subprocess.call('youtube-dl -i -o "%/media/Audio Playlists/(playlist)s/%(playlist_index)s.%(title)s.%(ext)s" --yes-playlist --extract-audio --audio-format mp3 --no-warnings "{url}"'.format(url=url), shell=True)
-						
+			subprocess.call('youtube-dl -i -o "media\{id_generated}\%(playlist_index)s.%(title)s.%(ext)s" --yes-playlist --extract-audio --audio-format mp3 --no-warnings "{url}"'.format(id_generated=id_generated, url=url), shell=True)
+			return id_generated
+			
 		elif choice == 4:
-				
-			subprocess.call('youtube-dl -i -o "%/media/Video Playlists/(playlist)s/%(playlist_index)s.%(title)s.%(ext)s" --yes-playlist --newline --no-warnings "{url}"'.format(url=url), shell=True)		
+			return id_generated
+	
+			subprocess.call('youtube-dl -i -o "%/media/{id_generated}/%(playlist_index)s.%(title)s.%(ext)s" --yes-playlist --newline --no-warnings "{url}"'.format(id_generated=id_generated, url=url), shell=True)		
 					
 	except Exception as e: #for any other unknown errors,  used it to get the other exceptions mentioned above, while debugging used to print `e`
 		
