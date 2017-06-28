@@ -13,12 +13,24 @@
   </head>
   <body>
 	      <br>
-
+	
 	<div class="container">
+
+	{% with messages = get_flashed_messages() %}
+  		{% if messages %}
+    		{% for info in messages %}
+      			<div class="alert alert-success" role="alert">
+		 				{{info}}
+		 		 </div>
+    		{% endfor %}
+   			</ul>
+  		{% endif %}
+	{% endwith %}
+
 		<div class="jumbotron">
 			<h2>{{ message }}</h2> 
 			<h3>{{ subline }}</h3>
-			<a href="/return-file/" target="blank"><button class="btn btn-default">Get the file</button>
+			<a href="/return-file/" target="blank"><button class="btn btn-default">Get the file</button></a>
 		</div>
 		
 		<img src = "{{ image_location }}">
