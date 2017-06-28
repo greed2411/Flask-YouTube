@@ -1,18 +1,23 @@
-from flask import Flask, render_template, request, redirect, flash, url_for, send_file
-from ydl import get_media, verify
+from flask import Flask, render_template, request, redirect, flash, url_for, send_file, session
+from ydl import get_media, verify, fetch_name
 
 app = Flask(__name__)
 app.secret_key = 'supposed to be a secret'
 
 @app.route('/return-file/')
 def return_file():
-	flash('Success', 'info')
-	return send_file('media\Audio downloads\\attention.mp3', attachment_filename = 'attention.mp3', as_attachment = True)
+	filename = session.get('filename') + '.mp3'
+	location = 'media\Audio downloads\{}.mp3'.format(session.get('id'))
+	return send_file(location, attachment_filename = filename, as_attachment = True)
 
 @app.route('/file-downloads/')
 def file_downloads():
-	flash('Success')
-	return render_template('downloads.html', title="Yay", message = "Sir, it appears the file is ready for download", 
+	
+	url = session.get('url')
+	filename = fetch_name(url)
+	session['filename'] = filename
+	flash('Successfully downloaded {}'.format(filename))
+	return render_template('downloads.html', title="Yay", message = "Sir, it appears the file is ready for download.", 
 											image_location = url_for('static', filename = 'images/ironman-simpson.jpg'))
 	
 
@@ -28,7 +33,8 @@ def home_page():
 	download_location = "YouTube URL"
 	
 	if request.method == 'POST':
-		
+			
+			#global attempted_url
 			attempted_url = request.form['url']
 			
 			CHOICES ={"Audio": 1,
@@ -42,7 +48,11 @@ def home_page():
 
 			if verify(attempted_url) :
 
-				result = get_media(attempted_url, num_choice)
+				result_id = get_media(attempted_url, num_choice)
+				session['url'] = attempted_url
+				session['id'] = result_id
+				#filename = fetch_name(attempted_url)
+				#return render_template('index.html', title = result_id)
 				return redirect(url_for('file_downloads'))
 			
 			return render_template('error_template.html' , title = "Invalid URL", 
