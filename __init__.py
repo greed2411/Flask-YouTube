@@ -6,6 +6,7 @@ app.secret_key = 'supposed to be a secret'
 
 @app.route('/return-file/')
 def return_file():
+	
 	filename = session.get('filename') + '.mp3'
 	location = 'media\Audio downloads\{}.mp3'.format(session.get('id'))
 	return send_file(location, attachment_filename = filename, as_attachment = True)
@@ -34,7 +35,6 @@ def home_page():
 	
 	if request.method == 'POST':
 			
-			#global attempted_url
 			attempted_url = request.form['url']
 			
 			CHOICES ={"Audio": 1,
@@ -51,8 +51,7 @@ def home_page():
 				result_id = get_media(attempted_url, num_choice)
 				session['url'] = attempted_url
 				session['id'] = result_id
-				#filename = fetch_name(attempted_url)
-				#return render_template('index.html', title = result_id)
+				
 				return redirect(url_for('file_downloads'))
 			
 			return render_template('error_template.html' , title = "Invalid URL", 
