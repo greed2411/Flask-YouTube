@@ -2,15 +2,18 @@ from flask import Flask, render_template, request, redirect, flash, url_for, sen
 from ydl import get_media, verify
 
 app = Flask(__name__)
+app.secret_key = 'supposed to be a secret'
 
 @app.route('/return-file/')
 def return_file():
-	return send_file('static\images\house-simpson.jpg', attachment_filename = 'house-md-simpson.jpg')
+	flash('Success', 'info')
+	return send_file('media\Audio downloads\\attention.mp3', attachment_filename = 'attention.mp3', as_attachment = True)
 
 @app.route('/file-downloads/')
 def file_downloads():
-	return render_template('downloads.html', title="Yay", message = "See you around!",    													  
-    													   image_location = url_for('static', filename = 'images/ironman-simpson.jpg'))
+	flash('Success')
+	return render_template('downloads.html', title="Yay", message = "Sir, it appears the file is ready for download", 
+											image_location = url_for('static', filename = 'images/ironman-simpson.jpg'))
 	
 
 
@@ -40,7 +43,7 @@ def home_page():
 			if verify(attempted_url) :
 
 				result = get_media(attempted_url, num_choice)
-				return redirect(url_for('home_page'))
+				return redirect(url_for('file_downloads'))
 			
 			return render_template('error_template.html' , title = "Invalid URL", 
 															message = "Are you being intentionally dense? Huh?",
