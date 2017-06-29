@@ -36,30 +36,36 @@ def get_media(url, choice):
 	"""
 	id_generated = id_generator() 
 	try:
-				
-		if choice == 1:
-				
-			subprocess.call('youtube-dl -f 251 -o "/media/Audio downloads/{id_generated}.%(ext)s" -q --no-playlist --extract-audio --audio-format mp3 --no-warnings "{url}"'.format(id_generated=id_generated, url=url), shell=True)
-			return id_generated
-
-		elif choice == 2:
-				
-			subprocess.call('youtube-dl  -o "/media/Video downloads/{id_generated}.%(ext)s" -q --no-playlist --no-warnings "{url}"'.format(id_generated=id_generated, url=url), shell=True)
-			return id_generated
-
-		elif choice == 3:
-				
-			subprocess.call('youtube-dl -i -o "media\{id_generated}\%(playlist_index)s.%(title)s.%(ext)s" --yes-playlist --extract-audio --audio-format mp3 --no-warnings "{url}"'.format(id_generated=id_generated, url=url), shell=True)
-			return id_generated
 			
-		elif choice == 4:
-			return id_generated
-	
-			subprocess.call('youtube-dl -i -o "%/media/{id_generated}/%(playlist_index)s.%(title)s.%(ext)s" --yes-playlist --newline --no-warnings "{url}"'.format(id_generated=id_generated, url=url), shell=True)		
+		if url == "":
+			
+			pass
+
+		else:	
+			
+			if choice == 1:
 					
-	except Exception as e: #for any other unknown errors,  used it to get the other exceptions mentioned above, while debugging used to print `e`
+				subprocess.call('youtube-dl -f 251 -o "/media/Audio downloads/{id_generated}.%(ext)s" -q --no-playlist --extract-audio --audio-format mp3 --no-warnings "{url}"'.format(id_generated=id_generated, url=url), shell=True)
+				return id_generated
+
+			elif choice == 2:
+					
+				subprocess.call('youtube-dl  -o "/media/Video downloads/{id_generated}.%(ext)s" -q --no-playlist --no-warnings "{url}"'.format(id_generated=id_generated, url=url), shell=True)
+				return id_generated
+
+			elif choice == 3:
+					
+				subprocess.call('youtube-dl -i -o "media\{id_generated}\%(playlist_index)s.%(title)s.%(ext)s" --yes-playlist --extract-audio --audio-format mp3 --no-warnings "{url}"'.format(id_generated=id_generated, url=url), shell=True)
+				return id_generated
+				
+			elif choice == 4:
+				return id_generated
 		
-		return e
+				subprocess.call('youtube-dl -i -o "%/media/{id_generated}/%(playlist_index)s.%(title)s.%(ext)s" --yes-playlist --newline --no-warnings "{url}"'.format(id_generated=id_generated, url=url), shell=True)		
+						
+	except Exception as e: #for any other unknown errors,  used it to get the other exceptions mentioned above, while debugging used to print `e`
+			
+			return e
 
 if __name__ == "___main__" :
 
