@@ -50,7 +50,7 @@ def get_media(url, choice):
 
 			elif choice == 2:
 					
-				subprocess.call('youtube-dl  -o "/media/Video downloads/{id_generated}.%(ext)s" -q --no-playlist --no-warnings "{url}"'.format(id_generated=id_generated, url=url), shell=True)
+				subprocess.call('youtube-dl -f 22 -o "/media/Video downloads/{id_generated}.%(ext)s" -q --no-playlist --no-warnings "{url}"'.format(id_generated=id_generated, url=url), shell=True)
 				return id_generated
 
 			elif choice == 3:
