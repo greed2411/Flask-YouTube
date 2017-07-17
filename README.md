@@ -4,7 +4,7 @@ Locally deployed Flask App (synchronous)  for downloading audio files, video fil
 
 Note: Assumes you have downloaded `youtube-dl` and `ffmpeg` installed, and have the path specified for `ffmpeg` in the site-package of `youtube-dl`
 
-Tested and developed on Windows7 32-bit SP1, yet to test on Ubuntu.
+Tested and developed on Windows7 32-bit SP1, Ubuntu GNOME 16.04 LTS.
 
 ### Screenshots
 
