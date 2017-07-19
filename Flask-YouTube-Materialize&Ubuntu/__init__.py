@@ -25,23 +25,6 @@ def return_file():
 
 	return send_file(location, attachment_filename = filename_formatted, as_attachment = True)
 
-@app.route('/file-downloads/')
-def file_downloads():
-
-	url = session.get('url')
-	filename = fetch_name(url)
-	session['filename'] = filename
-	num_choice = session.get('choice')
-	location = 'media\{}'.format(session.get('id'))
-	id_generated = session.get('id')
-
-	if num_choice == 3 or num_choice ==4:
-		zipping(id_generated, location)
-
-	flash('Successfully downloaded {}'.format(filename))
-	return render_template('downloads.html', title="Yay", message = "Sir, it appears the file is ready for download.")
-
-
 
 @app.route('/', methods = ['GET', 'POST'])
 def home_page():
@@ -49,23 +32,12 @@ def home_page():
 	Displaying homepage
 	"""
 
-	title = "YDL"
+	title = "YDL | YouTube Downloader"
 
 	if request.method == 'POST':
 
 			attempted_url = request.form['url']
 			attempted_choice = int(request.form['submit'])
-
-			# CHOICES ={"Audio": 1,
-			# 		 "Video": 2,
-			# 		 "Audio Playlist": 3,
-			# 		 "Video Playlist": 4
-			# 		}
-
-
-			#attempted_choice = list(CHOICES.keys())[list(CHOICES.values()).index(int(request.form['submit']))]
-			#num_choice = CHOICES.get(attempted_choice)
-
 			title = [attempted_url, attempted_choice]
 			if attempted_url != "":
 				if verify(attempted_url) :
@@ -74,19 +46,15 @@ def home_page():
 					session['url'] = attempted_url
 					session['id'] = result_id
 					session['choice'] = attempted_choice
+					filename = fetch_name(attempted_url)
+					session['filename'] = filename
 					#return render_template('material-life.html', title = "Success {}".format(title))
 					# return render_template('material-life.html', title = result_id)
-					return redirect(url_for('file_downloads'))
+					return redirect(url_for('return_file'))
 				else:
-					return render_template('material-life.html', title = "Doesn't belong to YouTube")
+					return render_template('material-life.html', title = "YDL | Doesn't belong to YouTube")
 			else:
-				return render_template('material-life.html', title = "URL shouldn't be empty")
-
-			# return render_template('error_template.html' , title = "Invalid URL",
-			# 												message = "Are you being intentionally dense? Huh?",
-    		# 											   subline = "Invalid URL",
-    		# 											   image_location = url_for('static', filename = 'images/house-simpson.jpg'))
-
+				return render_template('material-life.html', title = "YDL | URL shouldn't be empty")
 
 	return render_template('material-life.html', title = title)
 
@@ -102,15 +70,15 @@ def page_not_found(error):
     												image_location = url_for('static', filename = 'images/deadpool-funny.jpg') ), 404
 
 
-# @app.errorhandler(400)
-# def bad_request(error):
-# 	"""
-# 	For handling situations where the server doesn't know what to do with the browser's request
-# 	"""
-# 	return render_template('error_template.html' , title = "Aaaah ...",
-# 													message = "나는 이해하지 못한다.",
-#     												subline = "Yeah, the server couldn't understand what you asked for, probably because you didn't give a choice of download.",
-#     												image_location = url_for('static', filename = 'images/simpson-gangam.jpg')), 400
+@app.errorhandler(400)
+def bad_request(error):
+	"""
+	For handling situations where the server doesn't know what to do with the browser's request
+	"""
+	return render_template('error_template.html' , title = "Aaaah ...",
+													message = "나는 이해하지 못한다.",
+    												subline = "Yeah, the server couldn't understand what you asked for, Sorry",
+    												image_location = url_for('static', filename = 'images/simpson-gangam.jpg')), 400
 
 
 if __name__ == '__main__':
