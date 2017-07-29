@@ -2,10 +2,25 @@
 
 Locally deployed Flask App (synchronous)  for downloading audio files, video files, playlists of both video and audio, from a valid YouTube URL at the best quality out there.
 
-Note: Assumes you have downloaded `youtube-dl` and `ffmpeg` installed, and have the path specified for `ffmpeg` in the site-package of `youtube-dl`
+Tested and developed on ***Windows7 32-bit SP1, Ubuntu GNOME 16.04*** LTS with **Anaconda's Python distro, 3.6.1**
 
-Tested and developed on Windows7 32-bit SP1, Ubuntu GNOME 16.04 LTS.
+#### Command Line Programs used
 
+  * `youtube-dl` - Used to download the file from the internet.
+  * `ffmpeg` - Used for postprocess data, i.e., to convert file from .webm to .mp3 format.
+  
+#### Dependencies 
+
+  * [flask](http://flask.pocoo.org/) - A micro framework for backend.
+  * [bs4](https://www.crummy.com/software/BeautifulSoup/) - For parsing the html document.
+  * [lxml](http://lxml.de/) - helps BeautifulSoup while parsing, instead of the defualt slow html parser.
+  
+  if you don't have them, 
+  
+  ```pip_installation
+  pip install flask bs4 lxml
+  ```
+  for more instructions on how to install `youtube-dl` and `ffmpeg` on your machine visit the [YDL](https://github.com/Jaiimmortal/YDL#steps-to-follow-for-installing-dependencies) repository.
 ### Screenshots
 
 #### Homepage on Ubuntu
