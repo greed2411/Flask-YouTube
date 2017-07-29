@@ -8,10 +8,13 @@ Tested and developed on Windows7 32-bit SP1, Ubuntu GNOME 16.04 LTS.
 
 ### Screenshots
 
-#### Homepage
-![Homepage](/../master/Screenshots/Flask-YouTube-homepage-master.png?raw=true "homepage")
+#### Homepage on Ubuntu
 
 ![Homepage](/../master/Flask-YouTube-Materialize&Ubuntu/homepage-ubuntu_materialize.png?raw=true "homepage")
+
+#### Homepage on Windows 7
+
+![Homepage](/../master/Screenshots/Flask-YouTube-homepage-master.png?raw=true "homepage")
 
 ![Homepage](/../master/Screenshots/Flask-YouTube-homepage.png?raw=true "homepage")
 
