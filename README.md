@@ -2,7 +2,7 @@
 
 Locally deployed Flask App (synchronous)  for downloading audio files, video files, playlists of both video and audio, from a valid YouTube URL at the best quality out there.
 
-Tested and developed on ***Windows7 32-bit SP1, Ubuntu GNOME 16.04*** LTS with **Anaconda's Python distro, 3.6.1**
+Tested and developed on ***Ubuntu GNOME 18.04*** LTS with **Anaconda's Python distro, 3.6.5**
 
 #### Command Line Programs used
 
@@ -25,24 +25,6 @@ Tested and developed on ***Windows7 32-bit SP1, Ubuntu GNOME 16.04*** LTS with *
 
 #### Homepage on Ubuntu
 
-![Homepage](/../master/Flask-YouTube-Materialize&Ubuntu/homepage-ubuntu_materialize.png?raw=true "homepage")
-
-#### Homepage on Windows 7
-
-![Homepage](/../master/Screenshots/Flask-YouTube-homepage-master.png?raw=true "homepage")
-
-![Homepage](/../master/Screenshots/Flask-YouTube-homepage.png?raw=true "homepage")
-
-### Output page
-
-![Output](/../master/Screenshots/output.JPG?raw=true "file-downloads")
+![Homepage](/../master/homepage-ubuntu_materialize.png?raw=true "homepage")
 
 
-#### Responsive Design
-![mobile version](/../master/Screenshots/mobile.JPG?raw=true "homepage")
-
-![responsive-design](/../master/Screenshots/responsive-design.JPG?raw=true "homepage")
-
-
-#### Errors
-![Page not found](/../master/Screenshots/error-jinja-templates.JPG?raw=true "homepage")
